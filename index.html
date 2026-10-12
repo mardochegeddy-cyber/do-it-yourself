@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO IT YOURSELF | Find Your Future</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #172b45;
+      background: #f5f7fb;
+    }
+    header {
+      background: #10243a;
+      color: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .brand { font-size: 23px; font-weight: bold; }
+    .brand span { color: #f4b942; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+    .hero {
+      background: #10243a;
+      color: white;
+      padding: 65px 7% 75px;
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); }
+    .hero p { color: #d3deea; line-height: 1.7; }
+    .search {
+      display: flex;
+      gap: 10px;
+      max-width: 850px;
+      margin: 30px auto 0;
+      flex-wrap: wrap;
+    }
+    input, select, button {
+      padding: 14px;
+      border-radius: 7px;
+      border: 1px solid #d5dce5;
+      font-size: 15px;
+    }
+    .search input, .search select { flex: 1; min-width: 180px; }
+    button {
+      background: #f4b942;
+      border: 0;
+      color: #10243a;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .section { padding: 35px 7%; }
+    .section h2 { margin-bottom: 8px; }
+    .muted { color: #65758b; }
+    .jobs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .job {
+      background: white;
+      padding: 22px;
+      border: 1px solid #e1e7ef;
+      border-radius: 12px;
+    }
+    .job h3 { margin-top: 0; }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      background: #e8f2ff;
+      color: #225c9a;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    .job button { width: 100%; margin-top: 12px; }
+    .info {
+      background: white;
+      margin: 15px 7% 40px;
+      padding: 25px;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+    footer {
+      background: #10243a;
+      color: #d3deea;
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      header { padding: 18px 5%; }
+      nav a { margin-left: 0; margin-right: 12px; }
+      .hero { padding: 40px 5%; }
+      .section { padding: 25px 5%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">DO IT <span>YOURSELF</span></div>
+    <nav>
+      <a href="#jobs">Find Jobs</a>
+      <a href="#about">About</a>
+      <a href="#account">Sign In</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Your Career. Your Future.</h1>
+    <p>Explore job opportunities and connect with employers in Canada and the USA.</p>
+    <div class="search">
+      <input id="keyword" placeholder="Job title or keyword">
+      <select id="country">
+        <option value="">All countries</option>
+        <option value="Canada">Canada</option>
+        <option value="USA">United States</option>
+      </select>
+      <button onclick="searchJobs()">Search Jobs</button>
+    </div>
+  </section>
+
+  <section class="section" id="jobs">
+    <h2>Explore Job Opportunities</h2>
+    <p class="muted">Discover opportunities and prepare to apply.</p>
+    <div class="jobs" id="jobList">
+      <article class="job" data-country="Canada" data-keywords="cleaner cleaning housekeeping">
+        <span class="tag">Canada</span>
+        <h3>Cleaner / Housekeeper</h3>
+        <p class="muted">Cleaning and housekeeping opportunities.</p>
+        <p>Employer: To be announced</p>
+        <button onclick="applyJob('Cleaner / Housekeeper')">View application info</button>
+      </article>
+      <article class="job" data-country="USA" data-keywords="warehouse worker packing">
+        <span class="tag">USA</span>
+        <h3>Warehouse Worker</h3>
+        <p class="muted">Warehouse, packing and inventory roles.</p>
+        <p>Employer: To be announced</p>
+        <button onclick="applyJob('Warehouse Worker')">View application info</button>
+      </article>
+      <article class="job" data-country="Canada" data-keywords="hotel hospitality kitchen">
+        <span class="tag">Canada</span>
+        <h3>Hotel & Hospitality Staff</h3>
+        <p class="muted">Explore hotel and hospitality careers.</p>
+        <p>Employer: To be announced</p>
+        <button onclick="applyJob('Hotel & Hospitality Staff')">View application info</button>
+      </article>
+    </div>
+    <p id="noResults" hidden>No matching listings. Try another search.</p>
+  </section>
+
+  <section class="info" id="about">
+    <h2>About DO IT YOURSELF</h2>
+    <p>Our goal is to help job seekers discover opportunities and connect with employers in Canada and the United States. Always verify the employer and job details before sharing personal information or paying any fee.</p>
+  </section>
+
+  <section class="info" id="account">
+    <h2>Member Access</h2>
+    <p>Account registration and secure sign-in will be added in the next development stage.</p>
+    <button onclick="alert('Member accounts are coming soon. Please check back later.')">Create an account — Coming soon</button>
+  </section>
+
+  <footer>
+    <p>DO IT YOURSELF © 2026</p>
+    <p>Job listings must be verified before publication. No job or visa is guaranteed.</p>
+  </footer>
+
+  <script>
+    function searchJobs() {
+      const keyword = document.getElementById('keyword').value.toLowerCase().trim();
+      const country = document.getElementById('country').value;
+      const cards = document.querySelectorAll('.job');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchesKeyword =
+          !keyword ||
+          card.innerText.toLowerCase().includes(keyword) ||
+          card.dataset.keywords.includes(keyword);
+        const matchesCountry =
+          !country || card.dataset.country === country;
+        const show = matchesKeyword && matchesCountry;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+
+      document.getElementById('noResults').hidden = visible > 0;
+    }
+
+    function applyJob(title) {
+      alert('You selected: ' + title +
+        '. The secure application system will be added in a later stage.');
+    }
+  </script>
+</body>
+</html>
